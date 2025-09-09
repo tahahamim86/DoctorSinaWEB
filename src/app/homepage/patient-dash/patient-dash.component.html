@@ -1,0 +1,123 @@
+<app-navbar></app-navbar>
+<main>
+  <section id="patient-portal">
+    <h2>Patient Portal</h2>
+    <p>Securely manage your health, book appointments, and chat with your AI assistant.</p>
+
+    <div class="portal-container">
+      <aside class="sidebar">
+        <ul>
+          <li class="active"><a href="#book-appointment"><i class="fas fa-calendar-check"></i> Book Appointment</a></li>
+          <li><a href="#medical-history"><i class="fas fa-file-medical"></i> Medical History</a></li>
+          <li><a href="#ai-chat"><i class="fas fa-comments"></i> AI Chat Assistant</a></li>
+          <li><a href="#prescriptions"><i class="fas fa-prescription-bottle-alt"></i> Prescriptions</a></li>
+          <li><a href="#documents"><i class="fas fa-upload"></i> Upload Documents</a></li>
+        </ul>
+      </aside>
+      <section class="content">
+        <div id="book-appointment" class="portal-section active">
+          <h3>Book a New Appointment</h3>
+          <form class="appointment-form">
+            <label for="specialty">Specialty:</label>
+            <select id="specialty" name="specialty">
+              <option value="general">General Practice</option>
+              <option value="cardiology">Cardiology</option>
+              <option value="dermatology">Dermatology</option>
+              <option value="pediatrics">Pediatrics</option>
+            </select>
+
+            <label for="date">Preferred Date:</label>
+            <input type="date" id="date" name="date">
+
+            <label for="time">Preferred Time:</label>
+            <input type="time" id="time" name="time">
+
+            <label for="notes">Notes (optional):</label>
+            <textarea id="notes" name="notes" rows="4"></textarea>
+
+            <button type="submit" class="btn primary-btn">Confirm Booking</button>
+          </form>
+        </div>
+
+        <div id="medical-history" class="portal-section">
+          <h3>Your Medical History</h3>
+          <div class="history-list">
+            <div class="history-item">
+              <p><strong>Date:</strong> 2025-06-20</p>
+              <p><strong>Visit Type:</strong> General Check-up</p>
+              <p><strong>Doctor:</strong> Dr. Sarah Johnson</p>
+              <button class="btn secondary-btn">View Details</button>
+            </div>
+            <div class="history-item">
+              <p><strong>Date:</strong> 2025-03-15</p>
+              <p><strong>Visit Type:</strong> Blood Test Results</p>
+              <p><strong>Doctor:</strong> Dr. Michael Chen</p>
+              <button class="btn secondary-btn">View Details</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="ai-chat" class="portal-section">
+          <h3>AI Chat Assistant</h3>
+          <div class="chat-interface">
+            <div class="chat-messages">
+              <div class="message received">
+                <p>Hello! I am your AI health assistant. How can I help you today?</p>
+                <span>AI Assistant</span>
+              </div>
+              <div class="message sent">
+                <p>I have a headache and feel tired. What should I do?</p>
+                <span>You</span>
+              </div>
+              <div class="message received">
+                <p>I understand you're experiencing a headache and fatigue. These symptoms can have various causes. I recommend staying hydrated, getting adequate rest, and if symptoms persist, consulting with a healthcare provider.</p>
+                <span>AI Assistant</span>
+              </div>
+            </div>
+            <div class="chat-input">
+              <input type="text" placeholder="Type your health question...">
+              <button class="btn primary-btn">Send</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="prescriptions" class="portal-section">
+          <h3>Your Prescriptions</h3>
+          <div class="prescription-list">
+            <div class="prescription-item">
+              <p><strong>Medication:</strong> Amoxicillin 500mg</p>
+              <p><strong>Dosage:</strong> 3 times daily</p>
+              <p><strong>Refills:</strong> 2 remaining</p>
+              <p><strong>Prescribed by:</strong> Dr. Sarah Johnson</p>
+              <button class="btn primary-btn">Request Refill</button>
+            </div>
+            <div class="prescription-item">
+              <p><strong>Medication:</strong> Ibuprofen 200mg</p>
+              <p><strong>Dosage:</strong> As needed</p>
+              <p><strong>Refills:</strong> 0 remaining</p>
+              <p><strong>Prescribed by:</strong> Dr. Michael Chen</p>
+              <button class="btn secondary-btn">View Details</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="documents" class="portal-section">
+          <h3>Upload Medical Documents</h3>
+          <div class="document-upload-area">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Drag and drop files here or click to upload</p>
+            <input type="file" multiple>
+          </div>
+          <div class="uploaded-files">
+            <h4>Uploaded Files:</h4>
+            <ul>
+              <li>Blood Test Results.pdf <button class="btn secondary-btn">View</button></li>
+              <li>X-Ray Chest.jpg <button class="btn secondary-btn">View</button></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+<app-footerpage></app-footerpage>

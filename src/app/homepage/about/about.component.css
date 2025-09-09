@@ -1,0 +1,234 @@
+/* ==============================
+   Keyframes & Animations
+============================== */
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes floatCircle {
+  0%   { transform: translateY(0) translateX(0); }
+  50%  { transform: translateY(-30px) translateX(20px); }
+  100% { transform: translateY(0) translateX(0); }
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  50%  { transform: scale(1.2); opacity: 0.2; }
+  100% { transform: scale(1);   opacity: 0.6; }
+}
+
+/* ==============================
+   General Resets & Fonts
+============================== */
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==============================
+   Color Utilities
+============================== */
+.text-primary {
+  color: teal !important;
+}
+
+.btn-primary {
+  background-color: teal !important;
+  border-color: teal !important;
+}
+
+/* ==============================
+   Gradient Text & Buttons
+============================== */
+.gradient-text {
+  background: linear-gradient(90deg, #00bfa5, #004d40);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-gradient {
+  background: linear-gradient(90deg, #00bfa5, #004d40);
+  color: white;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(90deg, #004d40, #00bfa5);
+  transform: scale(1.05);
+}
+
+/* ==============================
+   Hero Section Decorative Circles
+============================== */
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 191, 165, 0.15);
+  z-index: 1;
+  animation: pulse 6s infinite ease-in-out;
+}
+
+.circle1 {
+  width: 120px;
+  height: 120px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.circle2 {
+  width: 200px;
+  height: 200px;
+  bottom: 20%;
+  right: 15%;
+  animation-delay: 3s;
+}
+
+.circle3 {
+  width: 100px;
+  height: 100px;
+  bottom: 10%;
+  left: 25%;
+  animation-delay: 6s;
+}
+
+/* ==============================
+   Cards & Feature Sections
+============================== */
+.feature-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.animate__animated {
+  visibility: visible !important;
+}
+
+/* ==============================
+   Containers & Layout
+============================== */
+.contain {
+  background-color: #f9fafb;
+  max-width: 1100px;
+  margin: 120px auto 80px;
+  padding: 2rem 1rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.wrapper {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* ==============================
+   About Section
+============================== */
+.about-content {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.about-content h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  margin: 2rem 0 1rem;
+  color: #007766;
+}
+
+/* ==============================
+   Team Section
+============================== */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.team-member {
+  background-color: #FFFFFF;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+body.dark-mode .team-member {
+  background-color: #264653;
+}
+
+.team-member img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid #007766;
+}
+
+.team-member h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.team-member p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+body.dark-mode .team-member p {
+  color: #ccc;
+}
+.contact-section {
+  background: #f9fafb;
+  border-top: 2px solid #e0e0e0;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #00bfa5, #004d40);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: 0.3s;
+}
+
+.form-control:focus {
+  border-color: #00bfa5;
+  box-shadow: 0 0 0 0.2rem rgba(0, 191, 165, 0.25);
+}
+
+.btn-gradient {
+  background: linear-gradient(90deg, #00bfa5, #004d40);
+  color: white;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  border-radius: 8px;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(90deg, #004d40, #00bfa5);
+  transform: scale(1.05);
+}

@@ -1,0 +1,32 @@
+
+
+   /* Modern Card Design */
+ .service-card {
+   background: #fff;
+   transition: all 0.3s ease-in-out;
+   cursor: pointer;
+ }
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+.service-card .service-icon img {
+  border: 4px solid #0c6f6f;
+  transition: all 0.3s ease-in-out;
+}
+.service-card:hover .service-icon img {
+  transform: rotate(10deg) scale(1.05);
+}
+.service-card h5 {
+  color: #0c6f6f;
+}
+.service-card a:hover {
+  text-decoration: none;
+}
+.btn-primary{
+  background-color: teal !important;
+  border-color: teal !important;
+}
+.text-primary{
+  color:teal !important;
+}

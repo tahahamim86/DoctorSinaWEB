@@ -1,0 +1,15 @@
+.text-primary{
+  color:teal !important;
+}
+body{
+  font-family: 'Arial', sans-serif !important;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #fff; /* or your navbar background */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}

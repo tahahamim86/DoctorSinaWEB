@@ -1,0 +1,123 @@
+/* Features Detail Section */
+#features-detail {
+  padding: 4rem 2rem;
+  background: linear-gradient(to right, #f0f4f5, #e9f7f6);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#features-detail h2 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #264653;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#features-detail p {
+  font-size: 1.2rem;
+  color: #4a4a4a;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.feature-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  background: #ffffffcc;
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.feature-item.reverse {
+  flex-direction: row-reverse;
+}
+
+.feature-text {
+  flex: 1 1 48%;
+}
+
+.feature-text h3 {
+  font-size: 2rem;
+  color: #007766;
+  margin-bottom: 1rem;
+}
+
+.feature-text p {
+  color: #555;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.feature-text ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.feature-text ul li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.feature-text ul li i {
+  color: #007766;
+  font-size: 1.2rem;
+}
+
+.feature-image {
+  flex: 1 1 48%;
+  text-align: center;
+}
+
+.feature-image img {
+  max-width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature-image img:hover {
+  transform: scale(1.03);
+}
+
+/* Responsive Tweaks */
+@media (max-width: 992px) {
+  .feature-item,
+  .feature-item.reverse {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .feature-text,
+  .feature-image {
+    flex: 1 1 100%;
+  }
+
+  .feature-text h3 {
+    font-size: 1.75rem;
+  }
+
+  #features-detail h2 {
+    font-size: 2.2rem;
+  }
+
+  #features-detail p {
+    font-size: 1.1rem;
+  }
+}

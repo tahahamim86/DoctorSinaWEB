@@ -1,0 +1,194 @@
+/* General Dashboard Layout */
+.dashboard-container {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+  padding: 2rem;
+}
+
+.dashboard-header {
+  margin-bottom: 3rem;
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0e2517;
+}
+
+.dashboard-subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+.date-time {
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+/* Quick Actions */
+.quick-actions .quick-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.quick-actions .quick-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Cards */
+.card {
+  background: #ffffffcc; /* slightly transparent for subtle glass effect */
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #0e2517;
+  border-bottom: none;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Welcome Card */
+.welcome-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  padding: 2rem;
+}
+
+.welcome-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #007766;
+}
+
+.welcome-card p {
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+.welcome-img {
+  width: 130px;
+  align-self: flex-end;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s;
+}
+
+.welcome-img:hover {
+  transform: scale(1.05);
+}
+
+/* File Upload Card */
+.custom-file-upload {
+  background: linear-gradient(135deg, #00C9A7, #007766);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.custom-file-upload:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.extract-button {
+  background: #007766;
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.extract-button:hover:not([disabled]) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Timeline Card */
+.timeline-item {
+  padding: 1rem;
+  border-left: 3px solid #00C9A7;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.timeline-item h6 {
+  font-weight: 600;
+  color: #0e2517;
+}
+
+.timeline-item p {
+  color: #6c757d;
+  margin: 0.3rem 0 0 0;
+}
+
+/* Health & Blood Sugar Cards */
+.chart-card, .health-card, .blood-sugar-card {
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.chart-card:hover, .health-card:hover, .blood-sugar-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Canvas Charts */
+canvas {
+  border-radius: 12px;
+  background: #f8f9fa;
+  padding: 0.5rem;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 1.5rem;
+  }
+
+  .welcome-card h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Utility Classes */
+.text-muted {
+  color: #6c757d !important;
+}
+
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+}

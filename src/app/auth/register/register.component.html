@@ -1,0 +1,57 @@
+<div class="register-page">
+  <form class="register-box" (ngSubmit)="register()">
+    <a [routerLink]="['/']">
+      <img src="assets/images/DoctorSinalogo.png" alt="DoctorSina Logo" class="logo" />
+    </a>
+
+    <h2 class="title">Create Your Account</h2>
+    <p class="subtitle">Join DoctorSina to access AI-powered healthcare.</p>
+
+    <div *ngIf="message" class="alert alert-{{ messageType }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="form-group">
+      <label for="first_name">First Name</label>
+      <input type="text" id="first_name" required [(ngModel)]="First_name" name="first_name" />
+    </div>
+
+    <div class="form-group">
+      <label for="last_name">Last Name</label>
+      <input type="text" id="last_name" required [(ngModel)]="Last_name" name="last_name" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" required [(ngModel)]="email" name="email" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" required [(ngModel)]="password" name="password" />
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role</label>
+      <select id="role" required [(ngModel)]="app_user_role" name="role">
+        <option value="" disabled selected>Select Role</option>
+        <option value="DOCTOR">Doctor</option>
+        <option value="USER">User</option>
+        <option value="PATIENT">Patient</option>
+        <option value="MANAGER">Manager</option>
+        <option value="LABORATORY_TECHNICIAN">Lab Technician</option>
+        <option value="TECHNICAL_ADMIN">Technical Admin</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn-register" [disabled]="isLoading">
+      {{ isLoading ? 'Registering...' : 'Sign Up' }}
+    </button>
+
+    <div class="bottom-text">
+      Already have an account?
+      <a routerLink="/login">Log in here</a>
+    </div>
+  </form>
+</div>

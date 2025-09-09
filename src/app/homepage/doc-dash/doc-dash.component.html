@@ -1,0 +1,90 @@
+<app-navbar></app-navbar>
+
+<main>
+  <section id="doctor-dashboard">
+    <h2>Doctor Dashboard</h2>
+    <p>Manage your appointments, interact with patients, and view comprehensive analytics.</p>
+
+    <div class="dashboard-container">
+      <aside class="sidebar">
+        <ul>
+          <li class="active"><a href="#appointments"><i class="fas fa-calendar-alt"></i> Appointments</a></li>
+          <li><a href="#patient-chat"><i class="fas fa-comments"></i> Patient Chat</a></li>
+          <li><a href="#analytics"><i class="fas fa-chart-line"></i> Analytics</a></li>
+          <li><a href="#patients"><i class="fas fa-users"></i> Patients</a></li>
+        </ul>
+      </aside>
+      <section class="content">
+        <div id="appointments" class="dashboard-section active">
+          <h3>Upcoming Appointments</h3>
+          <div class="appointment-list">
+            <div class="appointment-item">
+              <p><strong>Patient:</strong> Sarah Johnson</p>
+              <p><strong>Time:</strong> 09:00 AM</p>
+              <p><strong>Type:</strong> Consultation</p>
+              <button class="btn primary-btn">Start Call</button>
+            </div>
+            <div class="appointment-item">
+              <p><strong>Patient:</strong> Michael Chen</p>
+              <p><strong>Time:</strong> 10:30 AM</p>
+              <p><strong>Type:</strong> Follow-up</p>
+              <button class="btn primary-btn">Start Call</button>
+            </div>
+            <div class="appointment-item">
+              <p><strong>Patient:</strong> Emily White</p>
+              <p><strong>Time:</strong> 11:00 AM</p>
+              <p><strong>Type:</strong> Prescription Review</p>
+              <button class="btn primary-btn">Start Call</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="patient-chat" class="dashboard-section">
+          <h3>Patient Chat</h3>
+          <div class="chat-interface">
+            <div class="chat-messages">
+              <div class="message received">
+                <p>Hello Doctor, I have a persistent cough and fever since yesterday.</p>
+                <span>10:05 AM</span>
+              </div>
+              <div class="message sent">
+                <p>Thank you for reaching out. Can you describe your cough? Is it dry or productive?</p>
+                <span>10:07 AM</span>
+              </div>
+            </div>
+            <div class="chat-input">
+              <input type="text" placeholder="Type your message...">
+              <button class="btn primary-btn">Send</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="analytics" class="dashboard-section">
+          <h3>Practice Analytics</h3>
+          <div class="analytics-charts">
+            <img src="assets/analytics_chart.png" alt="Analytics Chart">
+          </div>
+        </div>
+
+        <div id="patients" class="dashboard-section">
+          <h3>Patient List</h3>
+          <div class="patient-list">
+            <div class="patient-item">
+              <p><strong>Name:</strong> John Doe</p>
+              <p><strong>Last Visit:</strong> 2025-07-10</p>
+              <p><strong>Condition:</strong> Hypertension</p>
+              <button class="btn secondary-btn">View Profile</button>
+            </div>
+            <div class="patient-item">
+              <p><strong>Name:</strong> Jane Smith</p>
+              <p><strong>Last Visit:</strong> 2025-07-12</p>
+              <p><strong>Condition:</strong> Diabetes</p>
+              <button class="btn secondary-btn">View Profile</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+<app-footerpage></app-footerpage>
