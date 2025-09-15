@@ -2,6 +2,7 @@ import { Component, ElementRef, inject, OnInit, TemplateRef, ViewChild } from '@
 import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import {
   ApexAxisChartSeries,
@@ -23,6 +24,7 @@ import { MedicalFormComponent } from 'src/app/medical-form/medical-form.componen
 import { Colors } from 'chart.js';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { HealthFormService } from 'src/app/services/healthform.service';
+import {ProfileService} from "../../services/profile.service";
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -45,15 +47,16 @@ export class DashboardComponent implements OnInit {
   daysLeft: number = 0;
  patientName: string = 'John';
  today: Date = new Date();
-
-  // Quick action buttons
   quickActions = [
-    { label: 'Book Appointment', icon: 'fa-solid fa-calendar-check', color: 'linear-gradient(45deg,#00C9A7,#007766)' },
-    { label: 'Upload Report', icon: 'fa-solid fa-upload', color: 'linear-gradient(45deg,#007BFF,#00BFFF)' },
-    { label: 'Request Prescription', icon: 'fa-solid fa-file-prescription', color: 'linear-gradient(45deg,#FFC107,#FFB300)' },
-    { label: 'Chat with Doctor', icon: 'fa-solid fa-comments', color: 'linear-gradient(45deg,#FF6B6B,#FF4757)' },
+    { label: 'Book Appointment', icon: 'fa-solid fa-calendar-check', color: 'linear-gradient(45deg,#00C9A7,#007766)', route: '/dashboard/book-appointment' },
+    { label: 'Upload Report', icon: 'fa-solid fa-upload', color: 'linear-gradient(45deg,#007BFF,#00BFFF)', route: '/dashboard/medical-form' },
+    { label: 'Request Prescription', icon: 'fa-solid fa-file-prescription', color: 'linear-gradient(45deg,#FFC107,#FFB300)', route: '/dashboard/medical-form' },
+    { label: 'Chat with Doctor', icon: 'fa-solid fa-comments', color: 'linear-gradient(45deg,#FF6B6B,#FF4757)', route: '/dashboard/messenger-w-doc' },
   ];
 
+  navigate(route: string) {
+    this.router.navigate([route]);
+  }
 bmiArcPercentage= 24
   // Timeline items
   timelineItems = [
@@ -64,10 +67,26 @@ bmiArcPercentage= 24
   ];
 bmi =24
   // Biochemistry chart note
-    
+
+  profileName=""
+  profileImage:any;
+  loadUserProfile(): void {
+    this.profileService.getProfile().subscribe(
+      (profile) => {
+        if (profile && profile.fullName) {
+          this.profileName = profile.fullName;
+        }
+        if (profile && profile.image) {
+          this.profileImage = 'data:image/png;base64,' + profile.image;
+        }
+      },
+      (error) => {
+        console.error('Error loading profile in header:', error);
+        // Optionally handle the error, e.g., display a default name
+      }
+    );
+  }
   bmiArcPath: string = '';
-
-
   updateBmiArc(): void {
     // Map BMI to arc endpoint (0 = 10,50, 100% = 90,50 for demonstration)
     // You can make this proportional to BMI range (e.g., 0-40)
@@ -105,7 +124,7 @@ callextract() {
       this.notificationMessage = `🧪 Please upload your biological chemical file. You can extract data in 90 day(s).`;
     }
   }
- 
+
 
   private offcanvasService = inject(NgbOffcanvas);
   private modalService = inject(NgbModal);
@@ -119,7 +138,7 @@ callextract() {
   showData: boolean = false;
   checked: boolean = false;
   displayMessage: boolean = false;
-  
+
   public series: ApexAxisChartSeries = [];
   public chart1!: ApexChart;
   public dataLabels!: ApexDataLabels;
@@ -157,7 +176,7 @@ callextract() {
   selectedFileName: string | null = null;
   bloodType: string = 'A+'; // Or retrieve this value dynamically if required
 
-  constructor(public dialog: MatDialog, private dashboardService: DashboardService, private healthformserivice: HealthFormService) {
+  constructor( public dialog: MatDialog, private dashboardService: DashboardService, private healthformserivice: HealthFormService, private router: Router,private profileService:ProfileService) {
     this.initChartData1();  // Initialize pulmonary function chart
     this.initBloodSugarChart();
   }
@@ -236,21 +255,23 @@ callextract() {
         this.weighth = healthData.weight;
         this.bloodType = healthData.blood_type;  // Set the weight
         this.height = healthData.height;   // Set the height
-  
+
         console.log('Weight:', this.weighth);  // Log the weight
-  
-        this.calculateBMI();  
+
+        this.calculateBMI();
       } else {
         console.error('No health data found');
       }
-    }); 
+    });
     this.callextract()
-    this.calculateBMI();  
+    this.calculateBMI();
     this.loadUserData();
     this.extract_data();
     this.getExtractedData();
-  this.tryGetOrExtractData();
-}
+    this.tryGetOrExtractData();
+    this.loadUserProfile();
+
+  }
 
   // Updated BMI calculation method
   calculateBMI(): void {
@@ -337,7 +358,7 @@ callextract() {
     };
   }
 
-  extractedData: any[] = [];  
+  extractedData: any[] = [];
   public loadingBloodSugar = false;  // Add a loading flag
   public bloodSugarCharts: any[] = []; // Array to hold multiple charts
 
@@ -346,28 +367,28 @@ callextract() {
       this.bloodSugarCharts = [];
       return;
     }
-  
+
     // Group by title
     const groupedData: { [key: string]: { date: string; value: number; unit: string }[] } = {};
-  
+
     this.extractedData.forEach(entry => {
       const title = entry.title || 'Unknown';
       const date = new Date(entry.date).toLocaleDateString();
       const value = parseFloat(entry.value.replace(/[^\d.]/g, '')) || 0;
-  
+
       if (!groupedData[title]) {
         groupedData[title] = [];
       }
       groupedData[title].push({ date, value, unit: entry.unit || '' });
     });
-  
+
     // Generate charts
     this.bloodSugarCharts = Object.keys(groupedData).map(title => {
       const dataPoints = groupedData[title];
       const seriesData = dataPoints.map(point => point.value);
       const categories = dataPoints.map(point => point.date);
       const unit = dataPoints[0].unit;
-  
+
       return {
         series: [
           {
@@ -413,8 +434,8 @@ callextract() {
       };
     });
   }
-  
-  
+
+
   getExtractedData(): void {
     this.dashboardService.getExtractedData().subscribe(
       (data) => {
@@ -451,6 +472,6 @@ callextract() {
       }
     });
   }
- 
-  
+
+
 }

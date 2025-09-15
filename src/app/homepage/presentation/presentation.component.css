@@ -32,39 +32,29 @@
       white-space: normal;
       word-wrap: break-word;
     }
-
     /* First slide styled like hero section */
     .hero-slide-style {
       background-color: #A8D5BA;
       min-height: 900px;
       transition: background-color 0.3s;
     }
-
-
-
     .hero-text {
       max-width: 50%;
     }
-
     .hero-title {
       font-family: 'Montserrat', sans-serif;
       font-size: 3rem;
       color: #264653;
     }
-
-
     .hero-description {
       font-size: 1.2rem;
       margin: 1rem 0;
       color: #333;
     }
-
-
     .cta-buttons {
       display: flex;
       gap: 1rem;
     }
-
     .primary-btn {
       background-color: #264653;
       color: #fff;
@@ -72,14 +62,79 @@
       border-radius: 5px;
       text-decoration: none;
     }
-
     .secondary-btn {
       color: #264653;
       padding: 0.75rem 1.5rem;
       text-decoration: none;
     }
-
     .primary-btn:hover,
     .secondary-btn:hover {
       opacity: 0.9;
     }
+    /* Sections */
+    section {
+      padding: 4rem 2rem;
+    }
+
+    section h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    section > p {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+    }
+
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background-color: #FFFFFF;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    body.dark-mode .card {
+      background-color: #264653;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .card i {
+      font-size: 3rem;
+      color: #007766;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .dashboard-preview img, .portal-preview img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .feature-box {
+      transition: all 0.3s ease-in-out;
+    }
+    .feature-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+    }
+

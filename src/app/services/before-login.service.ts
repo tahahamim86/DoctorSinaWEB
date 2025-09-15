@@ -10,18 +10,15 @@ export class BeforeLoginService implements CanActivate {
 
   constructor(private authService: AuthServiceService, private router: Router) {}
 
-  /**
-   * Allows access only if the user is NOT authenticated.
-   */
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): boolean | UrlTree | Observable<boolean | UrlTree> {
+  ): boolean | UrlTree {
     if (!this.authService.isAuthenticated()) {
-      return true;
+      return true; // allow guests
     }
 
-    // Redirect to dashboard if already authenticated
-    return this.router.createUrlTree(['/']);
+    // Redirect logged-in users to dashboard
+    return this.router.createUrlTree(['/dashboard']);
   }
 }

@@ -30,17 +30,17 @@
     </a>
     <div class="menu">
       <mat-menu #menu="matMenu" >
-        <button mat-menu-item routerLink="/profile">
+        <button mat-menu-item routerLink="/dashboard/profile">
           <a href="">
             <img [src]="profileImage" width="25px" height="45px">&nbsp; &nbsp;{{ profileName || 'User' }}
           </a>
         </button>
         <hr>
-        <button mat-menu-item routerLink="/profile">
+        <button mat-menu-item routerLink="/dashboard/profile">
           <mat-icon>perm_identity</mat-icon>
           Profile
         </button>
-        <button mat-menu-item routerLink="/password-reset">
+        <button mat-menu-item routerLink="/dashboard/password-reset">
           <mat-icon>settings</mat-icon> Settings
         </button>
         <hr>

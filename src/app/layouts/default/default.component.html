@@ -6,8 +6,11 @@
   </mat-drawer>
 
   <mat-drawer-content>
-    <router-outlet></router-outlet>
+    <router-outlet></router-outlet> <!-- ✅ Keep this only -->
   </mat-drawer-content>
 </mat-drawer-container>
 
 <app-footer></app-footer>
+
+<!-- ❌ Remove this -->
+<!-- <router-outlet></router-outlet> -->

@@ -12,13 +12,13 @@
             </div>
             <div class="col-sm-5 text-center text-sm-left">
               <div class="card-body pb-0 px-0 px-md-4">
-                <img src="assets/images/cardiology.jpg" height="170" alt="Lungs Illustration">
+                <img src="/assets/images/cardiology.jpg" height="170" alt="Lungs Illustration">
               </div>
             </div>
           </div>
         </div>
       </div></mat-card>
-  
+
     </div>
   <br>
   <br>
@@ -47,12 +47,12 @@
                 <text x="50" y="55" font-size="16" text-anchor="middle" fill="#000">{{accuracy}}%</text>
               </svg>
             </div>
-          
+
           </div>
         </div>
       </mat-card>
     </div>
-  
+
     <mat-card class="mt-4 p-3" *ngIf="showResult">
       <h2 class="text-danger" *ngIf="predictionClass">{{ text}}</h2>
       <p *ngFor="let text of displayedText" [ngClass]="{'typing-text': text.length > 0}">
@@ -63,11 +63,11 @@
         <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
       </button>
     </mat-card>
-  
-  
-  
+
+
+
   </div>
-  
+
   <!-- Modal for Image Upload -->
   <div id="uploadModal" class="modal fade" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
@@ -89,4 +89,3 @@
       </div>
     </div>
   </div>
-  

@@ -22,7 +22,6 @@ import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.componen
 import { HomeComponent } from 'src/app/pages/home/home.component';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgApexchartsModule } from 'ng-apexcharts';
-
 import { MessageComponent } from 'src/app/message/message.component';
 import { ChatbotServiceService } from 'src/app/services/chatbot-service.service';
 import { LoginComponent } from 'src/app/auth/login/login.component';
@@ -33,7 +32,6 @@ import { MedicalFormComponent } from 'src/app/medical-form/medical-form.componen
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ProfileComponent } from 'src/app/profile/profile.component';
 import {MatInputModule} from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { PasswordresetComponent } from 'src/app/passwordreset/passwordreset.component';
@@ -47,9 +45,7 @@ import { BraintumorComponent } from 'src/app/braintumor/braintumor.component';
 import { RetinopathyComponent } from 'src/app/retinopathy/retinopathy.component';
 import { CardiologyDiagnosisComponent } from 'src/app/cardiology-diagnosis/cardiology-diagnosis.component';
 import { DeleteConfirmationComponent } from 'src/app/delete-confirmation/delete-confirmation.component';
-
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { Token } from '@angular/compiler';
 import { TokenmodalComponent } from 'src/app/tokenmodal/tokenmodal.component';
 import { AppointementsComponent } from 'src/app/appointements/appointements.component';
 import { BookAppointmentComponent } from 'src/app/book-appointment/book-appointment.component';
@@ -68,7 +64,6 @@ import { ChatWDocComponent } from 'src/app/chat-w-doc/chat-w-doc.component';
     DashboardComponent,
     HomeComponent,
     SidebarComponent,
-    
     MessageComponent,LoginComponent,ChattechComponent,RegisterComponent,
     MedicalFormComponent,
     ProfileComponent,

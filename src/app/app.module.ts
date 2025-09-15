@@ -18,6 +18,8 @@ import { PatientDashComponent } from './homepage/patient-dash/patient-dash.compo
 import { FeaturesComponent } from './homepage/features/features.component';
 import { FAQComponent } from './homepage/f-aq/f-aq.component';
 import { TermComponent } from './homepage/term/term.component';
+import { BubblechatComponent } from './bubblechat/bubblechat.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { TermComponent } from './homepage/term/term.component';
     FeaturesComponent,
     FAQComponent,
     TermComponent,
+    BubblechatComponent,
 
 
 
@@ -46,7 +49,8 @@ import { TermComponent } from './homepage/term/term.component';
     BrowserAnimationsModule,
     StreamChatModule,
     StreamAutocompleteTextareaModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
 
   ],
   providers: [],

@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription, fromEvent } from 'rxjs'; // Import fromEvent
+import { Subscription, fromEvent } from 'rxjs';
+import {ProfileService} from "../../services/profile.service";
+import {AuthServiceService} from "../../services/auth-service.service"; // Import fromEvent
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private sidebar: HTMLElement | null = null;
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private renderer: Renderer2, private router:Router) {}
+  constructor(private renderer: Renderer2, private router:Router,private profileService: ProfileService,private authService:AuthServiceService) {}
   @Output() toggleSideBarForMe: EventEmitter<any>= new EventEmitter();
 toggleSideBar(){
 this.toggleSideBarForMe.emit();
@@ -43,6 +45,7 @@ istext =false;
 
       });
       this.subscriptions.add(arrowClick$);
+      this.loadUserProfile();
     });
 
     // Add event listener for sidebar button
@@ -79,13 +82,37 @@ openTokenPopup(event: MouseEvent): void {
   event.preventDefault();
   this.showModal = true;
 }
-logout(){
+  public loggedIn: boolean = false;
 
-}
+  logout(event: MouseEvent): void {
+    event.preventDefault();
+    this.authService.logout();
+    this.router.navigateByUrl('/login');
+    console.log("User logged out successfully");
+  }
+
   isDiagnosisOpen: boolean = false;
 
     toggleDiagnosisSubMenu() {
         this.isDiagnosisOpen = !this.isDiagnosisOpen;
     }
+  profileName=""
+  profileImage:any;
+  loadUserProfile(): void {
+    this.profileService.getProfile().subscribe(
+      (profile) => {
+        if (profile && profile.fullName) {
+          this.profileName = profile.fullName;
+        }
+        if (profile && profile.image) {
+          this.profileImage = 'data:image/png;base64,' + profile.image;
+        }
+      },
+      (error) => {
+        console.error('Error loading profile in header:', error);
+        // Optionally handle the error, e.g., display a default name
+      }
+    );
+  }
 
 }

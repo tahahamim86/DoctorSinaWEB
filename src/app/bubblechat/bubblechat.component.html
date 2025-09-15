@@ -1,0 +1,49 @@
+<div class="chat-container" *ngIf="isChatVisible">
+  <h4 style="background-color:#007766; color: #fff; padding: 20px 0; text-align: center; border-radius: 20px 20px 0 0;">
+    <img src="assets/images/doctor-2359417.png" width="30px"> &nbsp; DoctorLy AI Assistant
+  </h4>
+
+  <div class="message-container">
+    <div *ngFor="let msg of messages" [ngClass]="{'user-message': msg.user, 'bot-message': msg.bot}">
+
+      <!-- User message (Text or Voice) -->
+      <div *ngIf="msg.user" class="user-message">
+        <div *ngIf="msg.audioUrl; else textMessage">
+          <audio controls>
+            <source [src]="msg.audioUrl" type="audio/webm">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <ng-template #textMessage>
+          {{ msg.user }} &nbsp; <span class="message-time">{{ msg.time }}</span>
+        </ng-template>
+        <br>
+
+      </div>
+
+      <!-- Bot message -->
+      <div *ngIf="msg.bot" class="bot-message">
+        {{ msg.bot }}
+        <span class="message-time">{{ msg.time }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input and Voice Recording Buttons -->
+  <div class="input-container">
+    <input [(ngModel)]="userInput" placeholder="Type your message..." class="form-control" />
+    <button (dblclick)="toggleVoiceRecording()" class="btn btn-no-outline-success">
+      <i class="material-icons">
+        {{ isRecording ? 'stop' : 'mic' }}
+      </i>
+    </button>
+    <button (click)="sendMessage()" class="btn btn-no-outline-success">
+      <i class="material-icons">send</i>
+
+    </button>
+  </div>
+</div>
+
+<a class="button" (click)="toggleChat()">
+  <img src="assets/images/doctor-2359417.png" width="95px" />
+</a>

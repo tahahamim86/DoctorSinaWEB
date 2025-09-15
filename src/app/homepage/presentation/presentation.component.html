@@ -16,8 +16,8 @@
             {{ slide.text }}
           </p>
           <div class="cta-buttons mt-4">
-            <a href="patient.html" class="btn primary-btn">Book Appointment</a>
-            <a href="#" class="btn secondary-btn">Watch Demo</a>
+            <a [routerLink]="['/login']" class="btn primary-btn">Book Appointment</a>
+            <a [routerLink]="['/login']"  class="btn secondary-btn">Watch Demo</a>
           </div>
         </div>
         <div class="hero-image">
@@ -81,7 +81,7 @@
             By combining <strong>artificial intelligence</strong> with deep medical expertise, we ensure faster, safer, and more reliable healthcare services —
             setting new standards in telemedicine.
           </p>
-          <a href="about.html" class="btn btn-primary rounded-pill px-4 py-3" style="color: white;">Learn More About Us</a>
+          <a [routerLink]="['/login']"  class="btn btn-primary rounded-pill px-4 py-3" style="color: white;">Learn More About Us</a>
         </div>
       </div>
     </div>
@@ -141,17 +141,8 @@
     </div>
 
 </div>
-<style>
-  .feature-box {
-    transition: all 0.3s ease-in-out;
-  }
-  .feature-box:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
-  }
 
-</style>
-<!-- Feature Start -->
+
 <div class="container-fluid feature py-5">
   <div class="container py-5">
     <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -238,4 +229,19 @@
 </div>
 
 </div>
+<section id="doctor-dashboard-preview">
+  <h2>Doctor Dashboard</h2>
+  <p>Comprehensive tools for healthcare professionals</p>
+  <div class="dashboard-preview">
+    <img src="assets/img/dashboard_preview.png" alt="Doctor Dashboard Preview">
+  </div>
+</section>
+
+<section id="patient-portal-preview">
+  <h2>Patient Portal</h2>
+  <p>Your health, at your fingertips</p>
+  <div class="portal-preview">
+    <img src="assets/img/for_patient.png" alt="Patient Portal Preview">
+  </div>
+</section>
 <app-footerpage></app-footerpage>

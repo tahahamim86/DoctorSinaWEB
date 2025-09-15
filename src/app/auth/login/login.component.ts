@@ -36,7 +36,7 @@ export class LoginComponent {
 
         if (response.jwt) {
           localStorage.setItem('auth_token', response.jwt); // Store JWT Token
-          this.router.navigate(['home']); // Redirect to dashboard
+          this.router.navigate(['dashboard']); // Redirect to dashboard
         } else {
           this.message = 'Unexpected error. Please try again.';
         }

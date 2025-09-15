@@ -3,7 +3,7 @@
   <!-- Header -->
   <header class="dashboard-header d-flex flex-column flex-md-row justify-content-between align-items-center mb-5">
     <div>
-      <h1 class="dashboard-title">Good Morning, {{patientName}} 👋</h1>
+      <h1 class="dashboard-title">Good Morning, {{profileName}} 👋</h1>
       <p class="dashboard-subtitle text-muted">Track your health metrics, appointments, and progress at a glance.</p>
     </div>
     <div class="date-time text-muted">Today: {{ today | date:'fullDate' }}</div>
@@ -12,11 +12,14 @@
   <!-- Quick Actions -->
   <div class="quick-actions row g-3 mb-5">
     <div class="col-sm-6 col-md-3" *ngFor="let action of quickActions">
-      <button class="quick-btn shadow-sm" [ngStyle]="{'background': action.color}">
+      <button class="quick-btn shadow-sm"
+              [ngStyle]="{'background': action.color}"
+              (click)="navigate(action.route)">
         <i [class]="action.icon"></i> {{ action.label }}
       </button>
     </div>
   </div>
+
 
   <!-- Welcome + File Upload Cards -->
   <div class="row g-4 mb-5">
@@ -24,7 +27,7 @@
     <!-- Welcome Card with BMI / Weight / Height -->
     <div class="col-lg-6">
       <div class="card welcome-card p-4 shadow-sm position-relative overflow-hidden">
-        
+
         <!-- Decorative Circle -->
         <div class="decorative-circle position-absolute"></div>
 
@@ -36,7 +39,7 @@
 
         <!-- Body + BMI Visualization -->
         <div class="d-flex align-items-center mb-4">
-          
+
           <!-- Body Illustration -->
           <div class="body-illustration me-4 position-relative">
             <img src="/assets/images/silouhette.png" alt="Body Form" style="height: 180px;">
@@ -48,7 +51,7 @@
               <!-- Background Arc -->
               <path d="M10,50 A40,40 0 0,1 90,50" stroke="#e6e6e6" stroke-width="10" fill="none"/>
               <!-- Active BMI Arc -->
-        
+
             </svg>
             <div class="bmi-value position-absolute top-50 start-50 translate-middle text-center">
               <h5 class="fw-bold mb-0">{{bmi}}</h5>
@@ -67,16 +70,16 @@
             <h5 class="fw-bold">{{height}} cm</h5>
             <p class="text-muted mb-0">Height</p>
           </div>
-     
+
         </div>
 
         <!-- Additional Metrics -->
-    
+
 
         <!-- Call-to-Action Button -->
-        <button class="btn btn-gradient btn-lg align-self-start">
+        <a class="btn btn-gradient btn-lg align-self-start" routerLink="/dashboard/profile">
           View Profile <i class="fa-solid fa-arrow-right ms-2"></i>
-        </button>
+        </a>
 
         <!-- Decorative Illustration -->
         <img src="/assets/images/illustration-doc.png" alt="Medical Illustration" class="welcome-img position-absolute bottom-0 end-0 opacity-25" style="width: 150px;">

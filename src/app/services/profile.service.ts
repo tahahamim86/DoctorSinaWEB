@@ -9,7 +9,7 @@ import { environment } from 'environement';
   providedIn: 'root'
 })
 export class ProfileService {
-   private apiUrl = environment.apiUrl + '/v1/registration'; 
+   private apiUrl = environment.apiUrl+'/profile';
 
   constructor(private http: HttpClient, private authService: AuthServiceService) {}
 
@@ -112,7 +112,7 @@ export class ProfileService {
   private handleError(error: any): Observable<any> {
     console.error('An error occurred:', error);  // Enhanced error logging
     let errorMessage = 'Unknown error occurred. Please try again later.';
-    
+
     if (error.error instanceof ErrorEvent) {
       // Client-side or network error
       errorMessage = `Network error: ${error.error.message}`;

@@ -21,16 +21,11 @@ export class ProfileComponent implements OnInit {
     { key: 'nationality', label: 'Nationality', value: '', type: 'text' },
     { key: 'gender', label: 'Gender', value: '', type: 'text' }
   ];
-  isEditing: { [key: string]: boolean } = {};
-  showUpdateButton: boolean = false;
-  profileImage: string = 'assets/images/avatar.png';
-  profileExists: boolean = false;
-  confirmDelete: boolean = false;
+
+  profileExists = false;
+  profileImage: string = '/assets/images/avatar.png';
   age: number | null = null;
   selectedFile: File | null = null;
-
-  // To manage animated icon logic
-  showAnimatedIcon: boolean = false;
 
   constructor(
     private profileService: ProfileService,
@@ -42,140 +37,17 @@ export class ProfileComponent implements OnInit {
   }
 
   loadProfile(): void {
-    const token = this.authService.getToken();
-    if (token) {
-      this.profileService.getProfile().subscribe(
-        (profile) => {
-          if (profile) {
-            this.profileExists = true;
-            this.profileData.forEach(item => {
-              item.value = profile[item.key] || '';
-            });
-            this.profileImage = profile.image ? 'data:image/png;base64,' + profile.image : this.profileImage;
-            this.calculateAge();
-          }
-        },
-        (error) => {
-          console.error('Error loading profile:', error);
-          this.profileExists = false;
-          alert('Error loading profile. Please try again later.');
-        }
-      );
-    }
-  }
-
-  toggleEdit(key: string): void {
-    this.isEditing[key] = !this.isEditing[key];
-    this.checkUpdateButtonVisibility();
-  }
-
-  updateProfile(): void {
-    const token = this.authService.getToken();
-    if (token) {
-      const profilePayload = this.profileData.reduce((obj, item) => {
-        let value = item.value;
-        if (item.key === 'martialstatus') {
-          value = value.trim();
-        }
-        if (item.key === 'gender' && !['male', 'female', 'other'].includes(value.toLowerCase())) {
-          value = 'other';
-        }
-        obj[item.key] = value;
-        return obj;
-      }, {} as any);
-
-      console.log('profilePayload before update service call:', profilePayload); // Log the payload
-
-      // Log the selected file information for update
-      if (this.selectedFile) {
-        console.log('Selected File (update):', { name: this.selectedFile.name, size: this.selectedFile.size, type: this.selectedFile.type });
-      } else {
-        console.log('No file selected for update.');
-      }
-
-      this.profileService.updateProfile(profilePayload, this.selectedFile).subscribe(
-        (updatedProfile) => {
-          this.afterSaveSuccess(updatedProfile);
-          alert('Profile updated successfully!');
-          this.showAnimatedSave(); // Show animation
-        },
-        (error) => {
-          console.error('Error updating profile:', error);
-          alert('Error updating profile. Please try again later.');
-        }
-      );
-    }
-  }
-
-  createProfile(): void {
-    const token = this.authService.getToken();
-    if (token) {
-      const profilePayload = this.profileData.reduce((obj, item) => {
-        obj[item.key] = item.value;
-        return obj;
-      }, {} as any);
-
-      const email = this.authService.getUserId();
-      if (email) {
-        profilePayload['email'] = email;
-      }
-
-      console.log('profilePayload before service call:', profilePayload); // Log the payload
-
-      // Log the selected file information
-      if (this.selectedFile) {
-        console.log('Selected File:', { name: this.selectedFile.name, size: this.selectedFile.size, type: this.selectedFile.type });
-      } else {
-        console.log('No file selected.');
-      }
-
-      this.profileService.createProfile(profilePayload, this.selectedFile).subscribe(
-        (createdProfile) => {
-          this.afterSaveSuccess(createdProfile);
+    this.profileService.getProfile().subscribe({
+      next: (profile) => {
+        if (profile) {
           this.profileExists = true;
-          alert('Profile created successfully!');
-          this.showAnimatedSave();
-        },
-        (error) => {
-          console.error('Error creating profile:', error);
-          alert('Error creating profile. Please try again later.');
+          this.profileData.forEach(item => item.value = profile[item.key] || '');
+          this.profileImage = profile.image ? 'data:image/png;base64,' + profile.image : this.profileImage;
+          this.calculateAge();
         }
-      );
-    }
-  }
-
-  afterSaveSuccess(profile: any): void {
-    this.profileData.forEach(item => {
-      item.value = profile[item.key] || '';
-      this.isEditing[item.key] = false;
+      },
+      error: (err) => console.error('Error loading profile:', err)
     });
-    this.profileImage = profile.image ? 'data:image/png;base64,' + profile.image : 'assets/images/myimg.png';
-    this.selectedFile = null;
-    this.checkUpdateButtonVisibility();
-    this.calculateAge();
-  }
-
-  checkUpdateButtonVisibility(): void {
-    this.showUpdateButton = Object.values(this.isEditing).some(editing => editing);
-  }
-
-  triggerFileInput(): void {
-    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-    if (fileInput) {
-      fileInput.click();
-    }
-  }
-
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
-    if (file) {
-      this.selectedFile = file;
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.profileImage = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
   }
 
   calculateAge(): void {
@@ -185,55 +57,71 @@ export class ProfileComponent implements OnInit {
       const today = new Date();
       let age = today.getFullYear() - birthday.getFullYear();
       const monthDiff = today.getMonth() - birthday.getMonth();
-      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthday.getDate())) {
-        age--;
-      }
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthday.getDate())) age--;
       this.age = age;
-    } else {
-      this.age = null;
+    } else this.age = null;
+  }
+
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    const maxSizeMB = 4; // Maximum file size in MB
+    const maxSizeBytes = maxSizeMB * 1024 * 1024;
+
+    if (file) {
+      if (file.size > maxSizeBytes) {
+        alert(`File size exceeds ${maxSizeMB} MB. Please select a smaller file.`);
+        this.selectedFile = null;
+        return;
+      }
+
+      this.selectedFile = file;
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.profileImage = e.target.result;
+      reader.readAsDataURL(file);
     }
+  }
+
+
+  createProfile(): void {
+    const email = this.authService.getUserId();
+    if (!email) return;
+
+    // Explicitly type payload as any
+    const payload: any = this.profileData.reduce((obj: any, item) => {
+      obj[item.key] = item.value;
+      return obj;
+    }, {});
+
+    payload['email'] = email; // Now TS knows this is valid
+
+    this.profileService.createProfile(payload, this.selectedFile).subscribe({
+      next: (profile) => {
+        this.profileExists = true;
+        this.loadProfile();
+        alert('Profile created successfully!');
+      },
+      error: (err) => console.error(err)
+    });
+  }
+
+
+  updateProfile(): void {
+    const payload = this.profileData.reduce((obj, item) => ({ ...obj, [item.key]: item.value }), {});
+    this.profileService.updateProfile(payload, this.selectedFile).subscribe({
+      next: (profile) => this.loadProfile(),
+      error: (err) => console.error(err)
+    });
   }
 
   deleteProfile(): void {
-    if (this.confirmDelete) {
-      const token = this.authService.getToken();
-      if (token) {
-        this.profileService.deleteProfile().subscribe(
-          () => {
-            this.profileExists = false;
-            this.resetProfile();
-            alert('Profile deleted successfully!');
-          },
-          (error) => {
-            console.error('Error deleting profile:', error);
-            alert('Error deleting profile. Please try again later.');
-          }
-        );
-      }
-    } else {
-      this.confirmDelete = true;
-      alert('Click delete again to confirm!');
-    }
-  }
-
-  cancelDelete(): void {
-    this.confirmDelete = false;
-  }
-
-  resetProfile(): void {
-    this.profileData.forEach(item => item.value = '');
-    this.profileImage = 'assets/images/myimg.png';
-    this.age = null;
-    this.isEditing = {};
-    this.showUpdateButton = false;
-    this.selectedFile = null;
-    this.confirmDelete = false;
-  }
-
-  showAnimatedSave(): void {
-    this.showAnimatedIcon = true;
-    setTimeout(() => {
-      this.showAnimatedIcon = false;
-    }, 2000); // Show animation for 2 seconds
+    this.profileService.deleteProfile().subscribe({
+      next: () => {
+        this.profileExists = false;
+        this.profileData.forEach(item => item.value = '');
+        this.profileImage = '/assets/images/avatar.png';
+      },
+      error: (err) => console.error(err)
+    });
   }
 }

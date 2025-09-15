@@ -8,10 +8,10 @@
     <div class="dashboard-container">
       <aside class="sidebar">
         <ul>
-          <li class="active"><a href="#appointments"><i class="fas fa-calendar-alt"></i> Appointments</a></li>
-          <li><a href="#patient-chat"><i class="fas fa-comments"></i> Patient Chat</a></li>
-          <li><a href="#analytics"><i class="fas fa-chart-line"></i> Analytics</a></li>
-          <li><a href="#patients"><i class="fas fa-users"></i> Patients</a></li>
+          <li class="active"><a [routerLink]="['/login']"><i class="fas fa-calendar-alt"></i> Appointments</a></li>
+          <li><a [routerLink]="['/login']"><i class="fas fa-comments"></i> Patient Chat</a></li>
+          <li><a [routerLink]="['/login']"><i class="fas fa-chart-line"></i> Analytics</a></li>
+          <li><a [routerLink]="['/login']"><i class="fas fa-users"></i> Patients</a></li>
         </ul>
       </aside>
       <section class="content">
@@ -62,7 +62,7 @@
         <div id="analytics" class="dashboard-section">
           <h3>Practice Analytics</h3>
           <div class="analytics-charts">
-            <img src="assets/analytics_chart.png" alt="Analytics Chart">
+            <img src="assets/img/analytics_chart.png" alt="Analytics Chart">
           </div>
         </div>
 
@@ -87,4 +87,5 @@
     </div>
   </section>
 </main>
+
 <app-footerpage></app-footerpage>

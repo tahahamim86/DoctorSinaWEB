@@ -7,11 +7,11 @@
     <div class="portal-container">
       <aside class="sidebar">
         <ul>
-          <li class="active"><a href="#book-appointment"><i class="fas fa-calendar-check"></i> Book Appointment</a></li>
-          <li><a href="#medical-history"><i class="fas fa-file-medical"></i> Medical History</a></li>
-          <li><a href="#ai-chat"><i class="fas fa-comments"></i> AI Chat Assistant</a></li>
-          <li><a href="#prescriptions"><i class="fas fa-prescription-bottle-alt"></i> Prescriptions</a></li>
-          <li><a href="#documents"><i class="fas fa-upload"></i> Upload Documents</a></li>
+          <li class="active"><a [routerLink]="['/login']"><i class="fas fa-calendar-check"></i> Book Appointment</a></li>
+          <li><a [routerLink]="['/login']"><i class="fas fa-file-medical"></i> Medical History</a></li>
+          <li><a [routerLink]="['/login']"><i class="fas fa-comments"></i> AI Chat Assistant</a></li>
+          <li><a [routerLink]="['/login']"><i class="fas fa-prescription-bottle-alt"></i> Prescriptions</a></li>
+          <li><a [routerLink]="['/login']"><i class="fas fa-upload"></i> Upload Documents</a></li>
         </ul>
       </aside>
       <section class="content">
@@ -35,7 +35,7 @@
             <label for="notes">Notes (optional):</label>
             <textarea id="notes" name="notes" rows="4"></textarea>
 
-            <button type="submit" class="btn primary-btn">Confirm Booking</button>
+            <a [routerLink]="['/login']" class="btn primary-btn">Confirm Booking</a>
           </form>
         </div>
 

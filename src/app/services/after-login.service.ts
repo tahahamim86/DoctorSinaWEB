@@ -1,27 +1,22 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, CanActivateChild, Router, UrlTree } from '@angular/router';
 import { AuthServiceService } from './auth-service.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AfterLoginService implements CanActivate {
+@Injectable({ providedIn: 'root' })
+export class AfterLoginService implements CanActivate, CanActivateChild {
 
   constructor(private authService: AuthServiceService, private router: Router) {}
 
-  /**
-   * Determines if the user can access a route.
-   */
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean | UrlTree | Observable<boolean | UrlTree> {
-    if (this.authService.isAuthenticated()) {
-      return true;
-    }
+  canActivate(): boolean | UrlTree {
+    return this.checkAuth();
+  }
 
-    // Redirect to login page if not authenticated
+  canActivateChild(): boolean | UrlTree {
+    return this.checkAuth();
+  }
+
+  private checkAuth(): boolean | UrlTree {
+    if (this.authService.isAuthenticated()) return true;
     return this.router.createUrlTree(['/login']);
   }
 }
